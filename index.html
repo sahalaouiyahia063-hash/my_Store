@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>النخبة ستور | تسوق بأسلوب</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0A0A0A;
+    --dark-2: #111111;
+    --dark-3: #1A1A1A;
+    --white: #F5F0E8;
+    --gray: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; width: 100%;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    backdrop-filter: blur(10px);
+  }
+
+  .logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.95rem;
+    opacity: 0.8;
+    transition: all 0.3s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  .nav-btn {
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .nav-btn:hover { background: var(--gold-light); transform: scale(1.05); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 100px 40px 60px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+  }
+
+  .btn-primary:hover::after { transform: translateX(100%); }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201,168,76,0.4); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(245,240,232,0.3);
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex;
+    gap: 50px;
+    margin-top: 60px;
+    animation: fadeUp 0.8s 0.8s ease both;
+  }
+
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+
+  /* FLOATING CARDS */
+  .hero-visual {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  .product-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 20px;
+    width: 160px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .product-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(201,168,76,0.15);
+  }
+
+  .product-card:nth-child(2) { margin-top: 30px; }
+  .product-card:nth-child(4) { margin-top: 30px; }
+
+  .product-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  .product-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .product-price {
+    font-size: 0.9rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* FEATURES */
+  .features {
+    padding: 100px 40px;
+    background: var(--dark-2);
+    position: relative;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-title h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+
+  .section-title h2 span { color: var(--gold); }
+
+  .section-title p {
+    color: var(--gray);
+    font-size: 1rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 20px;
+    padding: 35px 25px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(201,168,76,0.1), transparent);
+    border-radius: 50%;
+    transform: translate(30%, -30%);
+  }
+
+  .feature-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .feature-card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* PRODUCTS */
+  .products {
+    padding: 100px 40px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .shop-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s;
+    cursor: pointer;
+  }
+
+  .shop-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  }
+
+  .shop-card-img {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    background: linear-gradient(135deg, var(--dark-2), var(--dark-3));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shop-card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(201,168,76,0.05));
+  }
+
+  .badge-new {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+  }
+
+  .shop-card-info {
+    padding: 20px;
+  }
+
+  .shop-card-info h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .shop-card-info p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  .shop-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .price {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--gold);
+  }
+
+  .add-btn {
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+  }
+
+  .add-btn:hover { background: var(--gold-light); transform: scale(1.05); }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 100px 40px;
+    background: var(--dark-2);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.3s;
+  }
+
+  .testimonial-card:hover { border-color: var(--gold); }
+
+  .stars { color: var(--gold); font-size: 1.2rem; margin-bottom: 15px; }
+
+  .testimonial-text {
+    color: rgba(245,240,232,0.8);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .author-name { font-weight: 700; font-size: 0.9rem; }
+  .author-loc { color: var(--gray); font-size: 0.8rem; }
+
+  /* CTA */
+  .cta {
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cta h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cta h2 span { color: var(--gold); }
+
+  .cta p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 40px;
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.85rem;
+  }
+
+  footer span { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-53%) translateX(-10px); }
+  }
+
+  .hero-visual { animation: float 6s ease-in-out infinite; }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* DIVIDER */
+  .gold-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 15px auto 0;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-visual { display: none; }
+    .hero-content { max-width: 100%; }
+    .hero h1 { font-size: 2.2rem; }
+    nav { padding: 15px 20px; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 25px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">النخبة ✦</div>
+  <ul class="nav-links">
+    <li><a href="#">المنتجات</a></li>
+    <li><a href="#">العروض</a></li>
+    <li><a href="#">من نحن</a></li>
+    <li><a href="#">تواصل معنا</a></li>
+  </ul>
+  <button class="nav-btn">🛒 تسوق الآن</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">✦ وصل الجديد — مجموعة 2025</div>
+    <h1>تسوّق بـ<span>أسلوب</span><br>يليق بك</h1>
+    <p>اكتشف أرقى المنتجات بأسعار لا تُقاوم. جودة استثنائية، توصيل سريع، وضمان 100% على كل طلب.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">🛍️ تسوق الآن</button>
+      <button class="btn-secondary">اكتشف المزيد ←</button>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">+50K</div>
+        <div class="stat-label">عميل سعيد</div>
+      </div>
+      <div>
+        <div class="stat-num">+2K</div>
+        <div class="stat-label">منتج متاح</div>
+      </div>
+      <div>
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">تقييم العملاء</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="product-card">
+      <div class="product-icon">👟</div>
+      <div class="product-name">أحذية رياضية</div>
+      <div class="product-price">799 دج</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">👜</div>
+      <div class="product-name">حقائب فاخرة</div>
+      <div class="product-price">1,299 دج</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">⌚</div>
+      <div class="product-name">ساعات ذكية</div>
+      <div class="product-price">2,499 دج</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🕶️</div>
+      <div class="product-name">نظارات شمسية</div>
+      <div class="product-price">599 دج</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="section-title reveal">
+    <h2>لماذا <span>النخبة ستور</span>؟</h2>
+    <div class="gold-divider"></div>
+    <p style="margin-top:15px">نقدم لك تجربة تسوق لا مثيل لها</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">🚀</div>
+      <h3>توصيل سريع</h3>
+      <p>نوصل لك في 24-48 ساعة لجميع ولايات الجزائر بضمان وصول آمن</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🔒</div>
+      <h3>دفع آمن 100%</h3>
+      <p>ادفع عند الاستلام أو أونلاين بأمان تام مع حماية كاملة لبياناتك</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">↩️</div>
+      <h3>إرجاع مجاني</h3>
+      <p>لم يعجبك المنتج؟ أعده مجاناً خلال 14 يوم بدون أي أسئلة</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">💬</div>
+      <h3>دعم 24/7</h3>
+      <p>فريقنا متاح على مدار الساعة للإجابة على كل استفساراتك</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="section-title reveal">
+    <h2>المنتجات <span>الأكثر مبيعاً</span></h2>
+    <div class="gold-divider"></div>
+    <p style="margin-top:15px">اختيارات العملاء الأكثر طلباً هذا الأسبوع</p>
+  </div>
+  <div class="products-grid">
+    <div class="shop-card reveal">
+      <div class="shop-card-img">
+        👟
+        <span class="badge-new">جديد</span>
+      </div>
+      <div class="shop-card-info">
+        <h3>حذاء رياضي Air Pro</h3>
+        <p>مريح، عصري، ومناسب لكل المناسبات</p>
+        <div class="shop-card-footer">
+          <span class="price">1,299 دج</span>
+          <button class="add-btn">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+    <div class="shop-card reveal">
+      <div class="shop-card-img">
+        ⌚
+        <span class="badge-new">🔥 الأكثر مبيعاً</span>
+      </div>
+      <div class="shop-card-info">
+        <h3>ساعة ذكية Ultra</h3>
+        <p>تتبع صحتك بدقة عالية مع شاشة AMOLED</p>
+        <div class="shop-card-footer">
+          <span class="price">3,499 دج</span>
+          <button class="add-btn">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+    <div class="shop-card reveal">
+      <div class="shop-card-img">
+        🎧
+      </div>
+      <div class="shop-card-info">
+        <h3>سماعات Pro Noise Cancel</h3>
+        <p>صوت نقي وعزل كامل للضوضاء</p>
+        <div class="shop-card-footer">
+          <span class="price">2,199 دج</span>
+          <button class="add-btn">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-title reveal">
+    <h2>ماذا يقول <span>عملاؤنا</span>؟</h2>
+    <div class="gold-divider"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"خدمة ممتازة وتوصيل سريع جداً! المنتج وصل في اليوم التالي وجودته تفوق التوقعات."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👨</div>
+        <div>
+          <div class="author-name">أحمد بن علي</div>
+          <div class="author-loc">📍 الجزائر العاصمة</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"أفضل متجر تسوقت منه. الأسعار معقولة والمنتجات أصلية 100%. سأتسوق منهم دائماً!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩</div>
+        <div>
+          <div class="author-name">سارة محمد</div>
+          <div class="author-loc">📍 وهران</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"تعاملت معهم لأول مرة وكانت التجربة رائعة. الدعم سريع الاستجابة ومحترف جداً."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👨</div>
+        <div>
+          <div class="author-name">كريم بوزيان</div>
+          <div class="author-loc">📍 قسنطينة</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2 class="reveal">مستعد للتسوق <span>الآن</span>؟</h2>
+  <p class="reveal">انضم لأكثر من 50,000 عميل سعيد واحصل على خصم 20% على أول طلب!</p>
+  <button class="btn-primary reveal" style="font-size:1.1rem; padding:18px 50px;">
+    🎁 احصل على خصمك الآن
+  </button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>النخبة ستور</span> — جميع الحقوق محفوظة | صُنع بـ ❤️ في الجزائر</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Add to cart animation
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.textContent = '✅ تمت الإضافة!';
+      this.style.background = '#2ecc71';
+      setTimeout(() => {
+        this.textContent = 'أضف للسلة';
+        this.style.background = '';
+      }, 2000);
+    });
+  });
+</script>
+</body>
+</html>
